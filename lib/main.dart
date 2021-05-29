@@ -9,11 +9,13 @@ import 'package:risetimedev/pages/domainFirmsView.dart';
 import 'package:risetimedev/pages/domainsView.dart';
 import 'package:risetimedev/pages/hostingsView.dart';
 import 'package:risetimedev/pages/settingsView.dart';
+import 'package:risetimedev/providers/domainfirms_provider.dart';
 import 'package:risetimedev/screens/adminlogin/adminlogin_screen.dart';
 import 'package:risetimedev/screens/login/login_screen.dart';
 import 'package:risetimedev/screens/seotalep/seotalep_screen.dart';
 import 'package:risetimedev/screens/signup/signup_screen.dart';
 import 'package:risetimedev/services/auth/auth_methods.dart';
+import 'package:risetimedev/services/domainfirms/firestore_domainfirms_service.dart';
 import 'package:risetimedev/translations/codegen_loader.g.dart';
 import 'package:risetimedev/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
                 context.read<FlutterFireAuthService>().authStateChanges,
             initialData: null,
           ),
+          ChangeNotifierProvider(create: (context) => DomainFirmsProvider()),
+          StreamProvider(create: (context)=> FirestoreDomainFirmsService().getDomainFirms()),
           ChangeNotifierProvider(create: (context) => MenuDrawerNotifier()),
         ],
         child: MaterialApp(
