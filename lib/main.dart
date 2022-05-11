@@ -20,13 +20,16 @@ import 'package:risetimedev/translations/codegen_loader.g.dart';
 import 'package:risetimedev/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'notifiers/menu_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     EasyLocalization(
         supportedLocales: [Locale('en', 'US'), Locale('tr', 'TR')],
